@@ -93,7 +93,8 @@ function draw(){
   if(modo === JOGAR) {
     score = score + Math.round(frameRate() / 60);
                      //ou dino.isTouching(chao)
-    if(keyDown("space") && dino.y > height-35){
+    if(touches.length > 0 && dino.y > height-35){
+      touches = []
       dino.velocityY = -10;
       pular.play();
     }
@@ -135,8 +136,9 @@ function draw(){
     gameOver.visible = true;
     restart.visible = true;
 
-    if(mousePressedOver(restart)) {
+    if(touches.length > 0) {
       reset();
+      touches = []
     }
   }
 
